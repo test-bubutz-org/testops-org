@@ -1,0 +1,8 @@
+name: approval
+on: workflow_dispatch
+jobs:
+  run-job:
+    runs-on: ubuntu-latest
+    environment: approval
+    steps:
+      - run: echo hello world
