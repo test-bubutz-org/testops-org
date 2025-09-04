@@ -13,9 +13,9 @@ on:
         description: Variable B
         type: choice
         options:
-          - 'Variable A-1'
-          - 'Variable A-2'
-          - 'Variable A-3'
+          - 'Variable B-1'
+          - 'Variable B-2'
+          - 'Variable B-3'
 jobs:
   show-var:
     runs-on: ubuntu-latest
