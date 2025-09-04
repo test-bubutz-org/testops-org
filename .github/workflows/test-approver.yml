@@ -28,12 +28,14 @@ jobs:
           echo "| Variable B | ${{ inputs.VAR_B }} |" >> $GITHUB_STEP_SUMMARY
 
   approval:
+    needs: [show-var]
     runs-on: ubuntu-latest
     environment: approval
     steps:
       - run: echo Approved
 
   run-job:
+    needs: [approval]
     runs-on: ubuntu-latest
     steps:
       - run: echo running job
