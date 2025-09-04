@@ -1,8 +1,39 @@
 name: approval
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      VAR_A:
+        description: Variable A
+        type: choice
+        options:
+          - 'Variable A-1'
+          - 'Variable A-2'
+          - 'Variable A-3'
+      VAR_B:
+        description: Variable B
+        type: choice
+        options:
+          - 'Variable A-1'
+          - 'Variable A-2'
+          - 'Variable A-3'
 jobs:
-  run-job:
+  show-var:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "## Workflow inputs" >> $GITHUB_STEP_SUMMARY
+          echo "| Variable | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "| --- | --- |" >> $GITHUB_STEP_SUMMARY
+          echo "| Variable A | ${{ inputs.VAR_A }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Variable B | ${{ inputs.VAR_B }} |" >> $GITHUB_STEP_SUMMARY
+
+  approval:
     runs-on: ubuntu-latest
     environment: approval
     steps:
-      - run: echo hello world
+      - run: echo Approved
+
+  run-job:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo running job
